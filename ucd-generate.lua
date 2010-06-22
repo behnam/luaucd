@@ -23,7 +23,7 @@ for line in file:lines() do
         ucd[code]  = {
             name            = notempty(data[2]),
             category        = notempty(data[3]),
-            bidi            = notempty(data[5]),
+            bidiclass       = notempty(data[5]),
             uppercase       = notempty(data[13], true),
             lowrcase        = notempty(data[14], true),
             titlecase       = notempty(data[15], true),
