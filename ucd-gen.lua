@@ -65,4 +65,4 @@ for line in file:lines() do
     end
 end
 
-table.tofile("ucd-database.lua", ucd, true)
+table.tofile("ucd-dat.lua", ucd, true)
