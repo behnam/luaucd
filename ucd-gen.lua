@@ -65,4 +65,26 @@ for line in file:lines() do
     end
 end
 
+file = io.open("Scripts.txt", "r")
+for line in file:lines() do
+    if not line:find("^#") and not line:is_empty() then
+        line = line:split("#")[1]
+        local data = line:split(";")
+        if data[1]:find("%.%.") then
+            local code  = data[1]:split("..")
+            local first = tonumber(code[1], 16)
+            local last  = tonumber(code[2], 16)
+            while first <= last do
+                ucd[first] = ucd[first] or { }
+                ucd[first].script = data[2]:gsub(" ", "")
+                first = first + 1
+            end
+        else
+            local code = tonumber(data[1], 16)
+            ucd[code] = ucd[code] or { }
+            ucd[code].script = data[2]:gsub(" ", "")
+        end
+    end
+end
+
 table.tofile("ucd-dat.lua", ucd, true)
