@@ -1,0 +1,4 @@
+This modules provides a lua inteface to UCD, mainly for luatex.
+
+Code curently depends on luatex and lualibs, it might be made more
+generic later on.
