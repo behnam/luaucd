@@ -19,7 +19,7 @@ local function get_data(char)
     local code
 
     if type(char) == "string" and len(char) == 1 then
-        code = ubyte(char)
+        code = byte(char)
     elseif type(char) == "number" then
         code = char
     else

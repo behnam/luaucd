@@ -25,7 +25,7 @@ for line in file:lines() do
             category        = notempty(data[3]),
             bidiclass       = notempty(data[5]),
             uppercase       = notempty(data[13], true),
-            lowrcase        = notempty(data[14], true),
+            lowercase       = notempty(data[14], true),
             titlecase       = notempty(data[15], true),
         }
     end
