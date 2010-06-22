@@ -7,7 +7,7 @@ require("lualibs")
 local function notempty(str,number)
     local value = str ~= "" and str or nil
     if number and value then
-        value = tonumber("0x"..value:gsub(" ", ""))
+        value = tonumber(value:gsub(" ", ""), 16)
     end
     return value
 end
@@ -19,7 +19,7 @@ for line in file:lines() do
     if not line:find("^#") and not line:is_empty() then
         line = line:split("#")[1]
         local data = line:split(";")
-        local code = tonumber("0x"..data[1])
+        local code = tonumber(data[1], 16)
         ucd[code]  = {
             name            = notempty(data[2]),
             category        = notempty(data[3]),
@@ -36,7 +36,7 @@ for line in file:lines() do
     if not line:find("^#") and not line:is_empty() then
         line = line:split("#")[1]
         local data = line:split(";")
-        local code = notempty(data[1], true)
+        local code = tonumber(data[1], 16)
         ucd[code].mirror = notempty(data[2], true)
     end
 end
@@ -46,7 +46,7 @@ for line in file:lines() do
     if not line:find("^#") and not line:is_empty() then
         line = line:split("#")[1]
         local data = line:split(";")
-        local code = notempty(data[1], true)
+        local code = tonumber(data[1], 16)
         ucd[code].joining = data[3]:gsub(" ", "")
     end
 end
@@ -58,7 +58,7 @@ for line in file:lines() do
         local data = line:split(";")
         if data[1]:find("%.%.") then
         else
-            local code = notempty(data[1], true)
+            local code = tonumber(data[1], 16)
             ucd[code] = ucd[code] or { }
             ucd[code].linebreak = data[2]:gsub(" ", "")
         end
