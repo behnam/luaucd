@@ -41,4 +41,14 @@ for line in file:lines() do
     end
 end
 
+file = io.open("ArabicShaping.txt", "r")
+for line in file:lines() do
+    if not line:find("^#") and not line:is_empty() then
+        line = line:split("#")[1]
+        local data = line:split(";")
+        local code = notempty(data[1], true)
+        ucd[code].joining = data[3]:gsub(" ", "")
+    end
+end
+
 table.tofile("ucd-database.lua", ucd, true)
